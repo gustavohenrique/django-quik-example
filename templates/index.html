@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Django using Quik as template engine</title>
+<style type="text/css">
+body {
+    font-family: Arial;
+    font-size: 12pt;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Users</h1>
+
+#if (!@users)
+    No users found.
+#end
+
+#set @msg = "Your username is":
+
+#macro printMsg @username:
+    <li>@msg <b>@username</b></li>
+#end
+
+<ul>
+    #for @username in @users:
+        #printMsg @username:
+    #end
+</ul>
+
+<p>
+    #set @url = "http://@request.META.get('HTTP_HOST')":
+    <a href="@url">@url</a>
+</p>
+
+</body>
+</html>
